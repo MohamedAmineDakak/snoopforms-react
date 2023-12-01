@@ -56,7 +56,7 @@ export const SnoopElement: FC<SnoopElementProps> = ({
   options,
   rows,
   columns,
-  rowsNumber
+  rowsNumber,
 }) => {
   const { schema, setSchema } = useContext(SchemaContext);
   const pageName = useContext(PageContext);
@@ -92,12 +92,8 @@ export const SnoopElement: FC<SnoopElementProps> = ({
         ].options = getOptionsSchema(options);
       }
       if (['likert'].includes(type)) {
-        newSchema.pages[pageIdx].elements[
-          elementIdx
-        ].rows = rows;
-        newSchema.pages[pageIdx].elements[
-          elementIdx
-        ].columns = columns;
+        newSchema.pages[pageIdx].elements[elementIdx].rows = rows;
+        newSchema.pages[pageIdx].elements[elementIdx].columns = columns;
       }
       return newSchema;
     });

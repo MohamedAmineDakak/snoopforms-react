@@ -25,7 +25,13 @@ interface Props {
   rows: Row[];
 }
 
-export const Likert: FC<Props> = ({ name, rows, columns, label, classNames }) => {
+export const Likert: FC<Props> = ({
+  name,
+  rows,
+  columns,
+  label,
+  classNames,
+}) => {
   //const [checked, setChecked] = useState<string[]>([]);
   const { setSubmission }: any = useContext(SubmissionContext);
   const pageName = useContext(PageContext);
