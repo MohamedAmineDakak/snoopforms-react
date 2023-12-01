@@ -1,6 +1,6 @@
 {
   "version": "0.3.0",
-  "name": "@snoopforms/react",
+  "name": "swisspoll-react",
   "author": "snoopForms <hola@snoopforms.com>",
   "description": "React library with form- & survey-elements for the snoopForms platform",
   "homepage": "https://snoopforms.com",

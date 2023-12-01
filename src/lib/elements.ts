@@ -2,14 +2,27 @@ export const setSubmissionValue = (
   v: any,
   pageName: string,
   name: string,
-  setSubmission: (s: any) => void
+  setSubmission: (s: any) => void,
+  isLikert: Boolean = false
 ) => {
+  console.log('value : ', v);
+  console.log('page : ', pageName);
+  console.log('name : ', name);
   setSubmission((submission: any) => {
+    console.log(submission);
     const newSubmission = { ...submission };
     if (!(pageName in newSubmission)) {
       newSubmission[pageName] = {};
     }
-    newSubmission[pageName][name] = v;
+    console.log(isLikert);
+    if (isLikert) {
+      if (!(name in newSubmission[pageName])) {
+        newSubmission[pageName][name] = {};
+      }
+      newSubmission[pageName][name][v.row] = v.column;
+    } else {
+      newSubmission[pageName][name] = v;
+    }
     return newSubmission;
   });
 };

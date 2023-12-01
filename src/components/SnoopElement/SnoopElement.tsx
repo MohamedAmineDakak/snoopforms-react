@@ -10,12 +10,23 @@ import { Submit } from '../Elements/Submit';
 import { Text } from '../Elements/Text';
 import { Textarea } from '../Elements/Textarea';
 import { Website } from '../Elements/Website';
+import { Likert } from '../Elements/Likert';
 import { CurrentPageContext, SchemaContext } from '../SnoopForm/SnoopForm';
 import { PageContext } from '../SnoopPage/SnoopPage';
 
 interface Option {
   label: string;
   value: string;
+}
+
+interface Column {
+  label: string;
+  id: string;
+}
+
+interface Row {
+  label: string;
+  id: string;
 }
 
 export interface SnoopElementProps {
@@ -28,7 +39,9 @@ export interface SnoopElementProps {
   classNames?: ClassNames;
   required?: boolean;
   options?: Option[] | string[];
-  rows?: number;
+  rows?: Row[];
+  columns?: Column[];
+  rowsNumber: number;
 }
 
 export const SnoopElement: FC<SnoopElementProps> = ({
@@ -42,6 +55,8 @@ export const SnoopElement: FC<SnoopElementProps> = ({
   required = false,
   options,
   rows,
+  columns,
+  rowsNumber
 }) => {
   const { schema, setSchema } = useContext(SchemaContext);
   const pageName = useContext(PageContext);
@@ -75,6 +90,14 @@ export const SnoopElement: FC<SnoopElementProps> = ({
         newSchema.pages[pageIdx].elements[
           elementIdx
         ].options = getOptionsSchema(options);
+      }
+      if (['likert'].includes(type)) {
+        newSchema.pages[pageIdx].elements[
+          elementIdx
+        ].rows = rows;
+        newSchema.pages[pageIdx].elements[
+          elementIdx
+        ].columns = columns;
       }
       return newSchema;
     });
@@ -150,7 +173,7 @@ export const SnoopElement: FC<SnoopElementProps> = ({
               name={name}
               label={label}
               help={help}
-              rows={rows}
+              rows={rowsNumber}
               placeholder={placeholder}
               classNames={classNames}
               required={required}
@@ -161,6 +184,17 @@ export const SnoopElement: FC<SnoopElementProps> = ({
               label={label}
               help={help}
               Icon={icon}
+              placeholder={placeholder}
+              classNames={classNames}
+              required={required}
+            />
+          ) : type === 'likert' ? (
+            <Likert
+              name={name}
+              label={label}
+              help={help}
+              rows={rows || []}
+              columns={columns || []}
               placeholder={placeholder}
               classNames={classNames}
               required={required}
