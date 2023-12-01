@@ -41,7 +41,7 @@ export interface SnoopElementProps {
   options?: Option[] | string[];
   rows?: Row[];
   columns?: Column[];
-  rowsNumber: number;
+  rowsNumber?: number;
 }
 
 export const SnoopElement: FC<SnoopElementProps> = ({
