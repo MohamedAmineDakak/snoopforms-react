@@ -37,10 +37,6 @@ export const Likert: FC<Props> = ({
   const { setSubmission }: any = useContext(SubmissionContext);
   const pageName = useContext(PageContext);
 
-  //   useEffect(() => {
-  //     setSubmissionValue(checked, pageName, name, setSubmission);
-  //   }, [checked]);
-
   return (
     <div>
       {label && (
