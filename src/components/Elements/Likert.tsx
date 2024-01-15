@@ -30,6 +30,7 @@ export const Likert: FC<Props> = ({
   rows,
   columns,
   label,
+  help,
   classNames,
 }) => {
   //const [checked, setChecked] = useState<string[]>([]);
@@ -50,6 +51,11 @@ export const Likert: FC<Props> = ({
         >
           {label}
         </label>
+      )}
+      {help && (
+        <p className={classNames.help || 'mt-2 text-sm text-gray-500'}>
+          {help}
+        </p>
       )}
       <table className="min-w-full divide-y divide-gray-300">
         <thead>
